@@ -1,0 +1,108 @@
+/* TurnosDisponibles.css */
+
+.turnos-page-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.turnos-loading {
+  text-align: center;
+  padding: 80px 0;
+}
+
+.turnos-loading .spinner {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+}
+
+.fecha-grupo {
+  margin-bottom: 32px;
+}
+
+.fecha-titulo {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.turnos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+
+.turno-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  width: 100%;
+}
+
+.turno-card:hover:not(:disabled) {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37,99,168,0.08);
+}
+
+.turno-card:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--surface2);
+}
+
+.turno-hora {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 2px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.turno-hasta {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+/* Modal de reserva */
+.reserva-turno-info {
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.reserva-turno-horario {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.reserva-turno-meta {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  margin-top: 2px;
+}
+
+.reserva-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reserva-form .modal-footer {
+  margin-top: 0;
+}
