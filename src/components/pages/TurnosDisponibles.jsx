@@ -85,11 +85,7 @@ export default function TurnosDisponibles() {
             <h1 className="page-title">Turnos disponibles</h1>
             <p className="page-subtitle">Hacé clic en un turno para reservar tu lugar</p>
           </div>
-          {!isAuthenticated && (
-            <Link to="/login" className="btn btn-ghost btn-sm">
-              🔒 Acceso administrador
-            </Link>
-          )}
+
         </div>
       </div>
 
