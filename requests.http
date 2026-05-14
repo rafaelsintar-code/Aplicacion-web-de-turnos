@@ -1,0 +1,92 @@
+@base = http://localhost:3000/api
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  SALUD DEL SERVIDOR
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### Estado del servidor
+GET {{base}}/health
+
+###  Descargar report.txt
+GET {{base}}/health/report
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  AUTH
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### Loggearse
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@turnos.com",
+  "password": "admin123"
+}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  USUARIOS
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### Listar usuarios (sin password)
+GET {{base}}/usuarios
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  TURNOS
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### Listar todos los turnos
+GET {{base}}/turnos
+
+### Obtener turno por ID
+GET {{base}}/turnos/1
+
+### Crear turno 
+POST {{base}}/turnos
+Content-Type: application/json
+
+{
+  "fecha": "2025-12-28",
+  "horaInicio": "11:00",
+  "horaFin": "11:30",
+  "capacidadMaxima": 5,
+  "estado": "activo"
+}
+
+### Editar turno
+PUT {{base}}/turnos/1
+Content-Type: application/json
+
+{
+  "capacidadMaxima": 8,
+  "estado": "inactivo"
+}
+
+### Eliminar turno (cancela sus reservas)
+DELETE {{base}}/turnos/3
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#  RESERVAS
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+### Listar todas las reservas (incluye datos del turno)
+GET {{base}}/reservas
+
+### Obtener reserva por ID
+GET {{base}}/reservas/1
+
+### Crear reserva 
+POST {{base}}/reservas
+Content-Type: application/json
+
+{
+  "turnoId": 2,
+  "nombreCliente": "Carlos López",
+  "carnetIdentidad": "11122233344"
+}
+
+### Cancelar reserva (cambia estado, mantiene el registro)
+PATCH {{base}}/reservas/1/cancelar
+
+### Eliminar reserva permanentemente
+DELETE {{base}}/reservas/2
+

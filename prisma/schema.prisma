@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Turno {
+  id              Int       @id @default(autoincrement())
+  fecha           String
+  horaInicio      String
+  horaFin         String
+  capacidadMaxima Int
+  estado          EstadoTurno @default(activo)
+  reservas        Reserva[]
+
+  @@map("turnos")
+}
+
+model Reserva {
+  id              Int           @id @default(autoincrement())
+  turnoId         Int
+  nombreCliente   String
+  carnetIdentidad String
+  fechaReserva    DateTime      @default(now())
+  estado          EstadoReserva @default(confirmada)
+  turno           Turno         @relation(fields: [turnoId], references: [id])
+
+  @@map("reservas")
+}
+
+model Usuario {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+  nombre   String
+  rol      String @default("admin")
+
+  @@map("usuarios")
+}
+
+enum EstadoTurno {
+  activo
+  inactivo
+}
+
+enum EstadoReserva {
+  confirmada
+  cancelada
+}
