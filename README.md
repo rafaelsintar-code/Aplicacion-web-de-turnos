@@ -54,8 +54,3 @@ npm run db:migrate
 # o sin historial de migraciones:
 npm run db:push
 ```
-
-### 5. Datos de ejemplo (opcional)
-```bash
-npm run db:seed
-```
