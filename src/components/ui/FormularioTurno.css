@@ -1,7 +1,0 @@
-/* FormularioTurno.css */
-
-.form-turno {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
